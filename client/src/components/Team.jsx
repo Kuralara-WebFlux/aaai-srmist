@@ -8,7 +8,8 @@ export default function Team() {
     const teamCategories = ['All', 'Faculty', 'Executive', 'Functional'];
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/team').then(res => setTeam(res.data)).catch(err => console.error(err));
+        axios.get('https://aaai-srmist-backend.onrender.com')
+            .then(res => setTeam(res.data)).catch(err => console.error(err));
     }, []);
 
     const filteredTeam = filter === 'All' ? team : team.filter(t => t.type.toLowerCase() === filter.toLowerCase());
