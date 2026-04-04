@@ -12,7 +12,7 @@ export default function Blog() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        axios.get('https://aaai-srmist-backend.onrender.com')
+        axios.get('https://aaai-srmist-backend.onrender.com/api/blogs')
             .then(res => { setBlogs(res.data); setLoading(false); })
             .catch(err => { console.error(err); setLoading(false); });
     }, []);

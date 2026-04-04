@@ -5,7 +5,7 @@ export default function Gallery() {
     const [eventsWithImages, setEventsWithImages] = useState([]);
 
     useEffect(() => {
-        axios.get('https://aaai-srmist-backend.onrender.com')
+        axios.get('https://aaai-srmist-backend.onrender.com/api/events')
             .then(res => {
                 const galleryEvents = res.data.filter(ev => ev.images && ev.images.length > 0);
                 setEventsWithImages(galleryEvents);

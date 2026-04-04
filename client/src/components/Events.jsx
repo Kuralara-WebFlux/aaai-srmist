@@ -9,7 +9,7 @@ export default function Events() {
     const eventCategories = ['All', 'Workshops', 'Hackathons', 'Student Led Sessions', 'Guest Lectures'];
 
     useEffect(() => {
-        axios.get('https://aaai-srmist-backend.onrender.com')
+        axios.get('https://aaai-srmist-backend.onrender.com/api/events')
             .then(res => setEvents(res.data))
             .catch(err => console.error(err));
     }, []);

@@ -8,7 +8,7 @@ export default function Team() {
     const teamCategories = ['All', 'Faculty', 'Executive', 'Functional'];
 
     useEffect(() => {
-        axios.get('https://aaai-srmist-backend.onrender.com')
+        axios.get('https://aaai-srmist-backend.onrender.com/api/team')
             .then(res => setTeam(res.data)).catch(err => console.error(err));
     }, []);
 
