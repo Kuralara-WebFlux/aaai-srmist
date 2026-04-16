@@ -28,7 +28,7 @@ export default function Footer() {
                     <div className="footer-col">
                         <h4>Resources</h4>
                         <ul className="footer-links">
-                            <li><a href="#" className="footer-link">Membership Guide</a></li>
+                            <li><a href="https://aaai.org/membership/" className="footer-link">Membership Guide</a></li>
                             <li><a href="https://aaai.org" target="_blank" rel="noopener noreferrer" className="footer-link">AAAI Global</a></li>
                         </ul>
                     </div>
