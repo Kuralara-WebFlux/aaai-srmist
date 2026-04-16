@@ -45,7 +45,7 @@ export default function Navbar() {
                         <li>{isHome ? <a href="#team" className="nav-link">Team</a> : <Link to="/#team" className="nav-link">Team</Link>}</li>
                         <li><Link to="/blog" className="nav-link">Research Journal</Link></li>
                     </ul>
-                    <a href="mailto:aaai.srmist@gmail.com" className="btn btn-primary btn-sm" style={{ marginLeft: '16px' }}>Contact</a>
+                    <a href="mailto:srmistcseaaai@ist.srmtrichy.edu.in" className="btn btn-primary btn-sm" style={{ marginLeft: '16px' }}>Contact</a>
                 </div>
 
                 <button className={`hamburger-standard ${menuOpen ? 'is-active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>

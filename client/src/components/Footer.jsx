@@ -35,7 +35,7 @@ export default function Footer() {
                     <div className="footer-col">
                         <h4>Connect</h4>
                         <ul className="footer-links">
-                            <li><a href="mailto:aaai.srmist@gmail.com" className="footer-link">aaai.srmist@gmail.com</a></li>
+                            <li><a href="mailto:srmistcseaaai@ist.srmtrichy.edu.in" className="footer-link">Mail</a></li>
                             <li><a href="https://www.linkedin.com/company/srmist-aaai-student-chapter" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a></li>
                             <li><a href="https://www.instagram.com/aaai_srmist" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a></li>
                         </ul>
