@@ -1,6 +1,6 @@
 /* ============================================================
    AAAI SRMIST - THE ULTIMATE ACADEMIC UI/UX MASTERPIECE
-   (Timeline, Cinematic Gallery, Editorial Blog, Borderless Team)
+   (Timeline, Cinematic Gallery, Editorial Blog, Hierarchical Team)
    ============================================================ */
 
 :root {
@@ -1025,15 +1025,60 @@ h4,
 }
 
 
-/* ==================== 4. TEAM GRID (BORDERLESS DIRECTORY) ==================== */
-.team-grid {
-  display: grid;
-  gap: 64px 24px;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+/* ==================== 4. TEAM GRID (HIERARCHICAL DIRECTORY) ==================== */
+.team-section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
   padding-top: 32px;
 }
 
+/* The Header for Each Tier */
+.team-tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.team-tier-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-bottom: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.team-tier-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--brand-blue);
+  border-radius: 2px;
+}
+
+/* Centered Flex Layout for Perfect Pyramids */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px 32px;
+  width: 100%;
+}
+
 .team-member {
+  flex: 0 0 auto;
+  width: 260px;
+  /* Fixed width prevents weird stretching when centered */
   background: transparent;
   border: none;
   border-radius: 0;
@@ -1051,15 +1096,14 @@ h4,
   transform: translateY(-8px);
 }
 
+/* Dynamic Avatar Sizing based on Tier */
 .tm-avatar {
-  width: 140px;
-  height: 140px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   color: var(--text-mute);
   margin-bottom: 24px;
@@ -1069,6 +1113,31 @@ h4,
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   overflow: hidden;
   filter: grayscale(100%) opacity(0.85);
+}
+
+/* Size Modifiers */
+.team-member.tier-1 .tm-avatar {
+  width: 160px;
+  height: 160px;
+}
+
+/* Faculty / Chairs */
+.team-member.tier-2 .tm-avatar {
+  width: 140px;
+  height: 140px;
+}
+
+/* Exec Board */
+.team-member.tier-3 .tm-avatar {
+  width: 120px;
+  height: 120px;
+}
+
+/* Leads */
+/* Default if no class added */
+.team-member:not([class*='tier-']) .tm-avatar {
+  width: 140px;
+  height: 140px;
 }
 
 .team-member:hover .tm-avatar {
@@ -1860,42 +1929,30 @@ h4,
 }
 
 
-/* ==================== 8. FOOTER (CINEMATIC SLATE ANCHOR) ==================== */
+/* ==================== 8. FOOTER (CLEAN INSTITUTIONAL CANVAS) ==================== */
 #footer {
   background: var(--brand-navy);
   color: #fff;
-  padding: 80px 0 0;
+  padding: 100px 0 0;
   margin-top: auto;
   position: relative;
-  /* 🌟 Delicate top border */
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: hidden;
+  /* Subtle Tech Watermark Grid */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* 🌟 Subtle AI Lab Watermark Grid */
+/* Deep Ambient Glow */
 #footer::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  pointer-events: none;
-}
-
-/* 🌟 Ambient Deep Blue Base Glow */
-#footer::after {
-  content: '';
-  position: absolute;
-  bottom: -50%;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 60%);
-  border-radius: 50%;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at bottom, rgba(29, 78, 216, 0.25) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .footer-grid {
@@ -1984,26 +2041,26 @@ h4,
   transform: translateX(6px);
 }
 
-/* 🌟 Flawless Seamless Bottom Bar */
+/* Flawless Seamless Bottom Bar */
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  /* Extremely delicate line */
-  padding: 32px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  /* Microscopic fading line */
+  padding: 40px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   background: transparent;
-  /* Removes the ugly box entirely */
+  /* No more ugly box */
   position: relative;
   z-index: 2;
 }
 
 .footer-copy {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
