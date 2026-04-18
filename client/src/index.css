@@ -1,6 +1,6 @@
 /* ============================================================
    AAAI SRMIST - THE ULTIMATE ACADEMIC UI/UX MASTERPIECE
-   (Timeline, Accordion Filmstrip, Archive Blog, Borderless Team)
+   (Timeline, Cinematic Gallery, Archive Blog, Borderless Team)
    ============================================================ */
 
 :root {
@@ -930,13 +930,13 @@ h4,
 }
 
 
-/* ==================== 2. EVENT GALLERY (MAGNETIC ACCORDION FILMSTRIP) ==================== */
+/* ==================== 2. EVENT GALLERY (Cinematic Focus Grid) ==================== */
 .gallery-group-header {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-bottom: 2px solid var(--section);
+  border-bottom: 2px solid var(--border);
   padding-bottom: 20px;
 }
 
@@ -955,91 +955,59 @@ h4,
   letter-spacing: 0.1em;
 }
 
-/* The Black Filmstrip Container */
+/* The Spaced Exhibition Grid */
 .gallery-grid {
-  display: flex !important;
-  gap: 2px !important;
-  /* Micro-gap for premium feel */
-  background: #000;
-  padding: 4px !important;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-hover);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  padding: 16px 0 48px;
 }
 
-.gallery-grid::-webkit-scrollbar {
-  display: none;
-}
-
-/* Mobile View: Snapping Scroll */
+/* Premium Framed Items */
 .gallery-item {
-  flex: 0 0 85% !important;
-  height: 300px;
   position: relative;
+  aspect-ratio: 16/10;
+  /* Perfect widescreen cinema aspect */
+  border-radius: var(--radius-md);
   overflow: hidden;
-  background: #000;
-  scroll-snap-align: center;
-  border-radius: var(--radius-sm);
-  transition: all 0.6s var(--ease);
+  background: var(--section);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
 }
 
 .gallery-item img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* 🌟 DESKTOP MAGIC: The Magnetic Accordion Effect 🌟 */
+/* 🌟 Depth-of-Field Hover Effect 🌟 */
 @media (min-width: 768px) {
-  .gallery-grid {
-    height: 480px;
-    /* Massive cinematic height */
-    overflow: hidden;
-    /* Lock scroll on desktop */
-  }
 
-  .gallery-item {
-    flex: 1 !important;
-    /* Evenly distribute images */
-    height: 100%;
-    border-radius: 4px;
-    transition: flex 0.7s cubic-bezier(0.25, 1, 0.2, 1), filter 0.7s var(--ease);
-    cursor: pointer;
-  }
-
-  .gallery-item img {
-    filter: grayscale(30%) contrast(1.1);
-    transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
-  }
-
-  /* The Magnetic Push/Shrink */
+  /* Step 1: When hovering ANYWHERE in the grid, gently dim all items */
   .gallery-grid:hover .gallery-item {
-    flex: 0.5 !important;
-    /* Compress un-hovered images */
+    opacity: 0.6;
+    transform: scale(0.98);
+    filter: grayscale(60%);
   }
 
+  /* Step 2: Vigorously illuminate and scale the EXACT item being hovered */
   .gallery-grid .gallery-item:hover {
-    flex: 4 !important;
-    /* Violently expand targeted image (400%) */
+    opacity: 1;
+    transform: scale(1.05) translateY(-8px);
+    filter: grayscale(0%);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--brand-blue);
     z-index: 10;
   }
 
-  /* Cinematic Dimming & Brightening */
-  .gallery-grid:hover .gallery-item img {
-    filter: grayscale(100%) brightness(0.3);
-    /* Darken others */
-  }
-
+  /* Inner-zoom the photo */
   .gallery-grid .gallery-item:hover img {
-    filter: grayscale(0%) brightness(1.05);
-    /* Illuminate target */
-    transform: scale(1.05);
-    /* Slight inner zoom */
+    transform: scale(1.1);
   }
 }
 
@@ -1049,13 +1017,13 @@ h4,
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  color: var(--text-mute);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  background: #111;
+  letter-spacing: 0.05em;
+  background: var(--section);
 }
 
 
@@ -1110,7 +1078,7 @@ h4,
   filter: grayscale(0%) opacity(1);
   box-shadow: var(--shadow-hover);
   border-color: var(--brand-blue);
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .tm-avatar-img {
@@ -1270,7 +1238,7 @@ h4,
   border-bottom-color: transparent;
 }
 
-/* 🌟 CRITICAL: Hide all images for pure data-archive look */
+/* Hide all images for pure data-archive look */
 .blog-image-placeholder,
 .featured-img {
   display: none !important;
@@ -1844,6 +1812,18 @@ h4,
   padding: 100px 0 0;
   margin-top: auto;
   position: relative;
+  overflow: hidden;
+}
+
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
 .footer-grid {
@@ -1851,6 +1831,8 @@ h4,
   grid-template-columns: 1fr;
   gap: 56px 32px;
   padding-bottom: 80px;
+  position: relative;
+  z-index: 2;
 }
 
 @media (min-width: 640px) {
@@ -1877,7 +1859,7 @@ h4,
   font-family: 'Space Grotesk', sans-serif;
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -1904,7 +1886,7 @@ h4,
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brand-light);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 8px;
   display: inline-block;
@@ -1913,7 +1895,7 @@ h4,
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .footer-link {
@@ -1937,14 +1919,16 @@ h4,
   align-items: center;
   gap: 16px;
   background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
 .footer-copy {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 
@@ -1990,20 +1974,5 @@ h4,
     left: 24px;
     width: 48px;
     height: 48px;
-  }
-
-  .aria-core-trigger {
-    bottom: 24px;
-    right: 24px;
-    width: 60px;
-    height: 60px;
-  }
-
-  .aria-terminal {
-    bottom: 24px;
-    right: 24px;
-    left: 24px;
-    width: auto;
-    max-width: none;
   }
 }
