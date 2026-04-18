@@ -1,32 +1,23 @@
 /* ============================================================
    AAAI SRMIST - THE ULTIMATE ACADEMIC UI/UX MASTERPIECE
-   (Fully Responsive, Swipe Gallery, AI Hero, Hierarchical Team, ARIA Chatbot)
+   (Fully Responsive, Ultra-Wide Support, Swipe Gallery, AI Hero)
    ============================================================ */
 
 :root {
   /* Institutional Premium Palette */
   --brand-navy: #0A142F;
-  /* Deep, authoritative academic navy */
   --brand-blue: #1D4ED8;
-  /* Official vibrant chapter blue */
   --brand-light: #EFF6FF;
-  /* Soft blue for active states */
 
   /* Crisp Paper & Cinematic Surfaces */
   --bg-main: #F8FAFC;
-  /* Soft slate background */
   --surface: #FFFFFF;
-  /* Pure white elevation */
   --section: #F1F5F9;
-  /* Contrast blocks */
 
   /* High-Legibility Editorial Typography */
   --text-main: #0F172A;
-  /* Slate 900 */
   --text-sub: #475569;
-  /* Slate 600 */
   --text-mute: #94A3B8;
-  /* Slate 400 */
 
   /* Micro-Borders & Shadows */
   --border: #E2E8F0;
@@ -47,7 +38,7 @@
   --nav-h: 76px;
 }
 
-/* ==================== GLOBAL RESET & RENDERING ==================== */
+/* ==================== GLOBAL RESET & ANIMATIONS ==================== */
 *,
 *::before,
 *::after {
@@ -73,7 +64,6 @@ body {
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
-  /* CRITICAL: Prevents side-scrolling bugs on mobile */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -107,8 +97,6 @@ img {
   display: block;
 }
 
-/* Crucial for responsive images */
-
 /* Strong, Academic Typography */
 h1,
 h2,
@@ -125,6 +113,33 @@ h4,
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* 🌟 CRITICAL ANIMATIONS FOR PULSING DOTS 🌟 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
 /* ==================== MACRO-STRUCTURE ==================== */
 .app-wrapper {
   display: flex;
@@ -136,11 +151,13 @@ h4,
   flex: 1;
 }
 
+/* 🌟 EXPANDED CONTAINER TO FIX GAPS ON WIDE MONITORS 🌟 */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
+  /* Increased from 1200px to stretch beautifully on PC */
   margin: 0 auto;
-  padding: 0 clamp(16px, 5vw, 40px);
+  padding: 0 clamp(24px, 5vw, 64px);
   position: relative;
   z-index: 2;
 }
@@ -520,7 +537,6 @@ h4,
   padding-top: var(--nav-h);
   background-color: var(--brand-navy);
 
-  /* AI Glowing Gradients */
   background-image:
     radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.25) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 40%);
@@ -591,6 +607,19 @@ h4,
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+/* 🌟 CRITICAL FIX: Make the hidden "Explore Events" button visible on dark background 🌟 */
+#hero .btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+#hero .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
 }
 
 
@@ -1213,7 +1242,7 @@ h4,
 }
 
 
-/* ==================== 6. RESEARCH JOURNAL ==================== */
+/* ==================== 6. RESEARCH JOURNAL (MODERN EDITORIAL) ==================== */
 .page-hero {
   background: var(--brand-navy);
   padding: calc(var(--nav-h) + clamp(60px, 10vw, 100px)) 0 clamp(60px, 10vw, 100px);
@@ -1284,6 +1313,7 @@ h4,
   color: var(--text-main);
 }
 
+/* The Modern Editorial Grid */
 .blog-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1302,6 +1332,7 @@ h4,
   }
 }
 
+/* Beautiful Framed Cards */
 .blog-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1383,6 +1414,7 @@ h4,
   flex: 1;
 }
 
+/* The Massive Featured Hero Article */
 @media (min-width: 1024px) {
   .featured-blog {
     grid-column: 1 / -1;
@@ -1462,8 +1494,217 @@ h4,
   flex: 1;
 }
 
+.blog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-/* ==================== 7. PROFESSIONAL CHATBOT (ARIA) ==================== */
+.blog-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  box-shadow: var(--shadow-sm);
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.author-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+}
+
+/* ==================== 7. BLOG READER MODE ==================== */
+.reader-mode-container {
+  background: var(--bg-main);
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  padding-bottom: 100px;
+  animation: fadeIn 0.5s var(--ease);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reader-top-bar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 99;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sub);
+  transition: all 0.3s;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.btn-back:hover {
+  background: var(--brand-navy);
+  color: #fff;
+  border-color: var(--brand-navy);
+  transform: scale(0.98);
+}
+
+.reader-article {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-top: 48px;
+  box-shadow: var(--shadow-sm);
+}
+
+.reader-header {
+  text-align: left;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.reader-title {
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1.15;
+  margin-bottom: 32px;
+  color: var(--brand-navy);
+  letter-spacing: -0.03em;
+}
+
+.reader-author-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 2px solid var(--section);
+  border-bottom: 2px solid var(--section);
+}
+
+.reader-image-hero {
+  width: 100%;
+  aspect-ratio: 21/9;
+  background: var(--section);
+  border-radius: var(--radius-sm);
+  margin-bottom: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-mute);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  padding: 16px;
+}
+
+.reader-image-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.blog-rich-content {
+  font-size: clamp(16px, 2.5vw, 19px);
+  color: var(--text-main);
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.blog-rich-content .lead-text {
+  font-size: clamp(20px, 3vw, 24px);
+  color: var(--text-sub);
+  font-weight: 400;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.blog-rich-content h4 {
+  margin: 56px 0 24px;
+  font-size: clamp(24px, 4vw, 28px);
+  color: var(--brand-navy);
+  border-bottom: 2px solid var(--section);
+  padding-bottom: 12px;
+}
+
+.blog-rich-content p {
+  margin-bottom: 28px;
+}
+
+.blog-rich-content ul {
+  padding-left: 24px;
+  margin-bottom: 40px;
+  list-style-type: square;
+  color: var(--text-main);
+}
+
+.blog-rich-content li {
+  margin-bottom: 12px;
+}
+
+.blog-rich-content a {
+  color: var(--brand-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--border-hover);
+  transition: all 0.3s;
+  text-underline-offset: 6px;
+}
+
+.blog-rich-content a:hover {
+  text-decoration-color: var(--brand-blue);
+  background: var(--brand-light);
+}
+
+/* ==================== 8. PROFESSIONAL CHATBOT (ARIA) ==================== */
 .aria-core-trigger {
   position: fixed;
   bottom: 32px;
@@ -1730,30 +1971,18 @@ h4,
   box-shadow: 0 4px 16px rgba(29, 78, 216, 0.3);
 }
 
-
-/* ==================== 8. FOOTER ==================== */
+/* ==================== 9. FOOTER ==================== */
 #footer {
   background: var(--brand-navy);
   color: #fff;
   padding: clamp(60px, 10vw, 100px) 0 0;
   margin-top: auto;
   position: relative;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  overflow: hidden;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 #footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  pointer-events: none;
-}
-
-#footer::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1789,8 +2018,8 @@ h4,
 }
 
 .footer-logo-mark {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
@@ -1798,40 +2027,51 @@ h4,
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
 }
 
 .footer-brand-name {
-  font-size: clamp(20px, 3vw, 26px);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 4vw, 26px);
   font-weight: 700;
-  margin-bottom: 12px;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
 }
 
 .footer-brand p {
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.6);
-  max-width: 100%;
+  line-height: 1.7;
+  max-width: 400px;
 }
 
 .footer-col h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  color: var(--text-mute);
-  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-sub);
+  margin-bottom: 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 12px;
+  display: inline-block;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .footer-link {
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.5);
   display: inline-block;
   transition: all 0.3s;
@@ -1844,11 +2084,12 @@ h4,
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 32px 0;
+  padding: 40px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
   background: transparent;
   position: relative;
   z-index: 2;
@@ -1856,14 +2097,13 @@ h4,
 
 .footer-copy {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
-
-/* ==================== 9. MOBILE OVERRIDES & GO TO TOP ==================== */
+/* ==================== 10. MOBILE OVERRIDES & GO TO TOP ==================== */
 .scroll-to-top {
   position: fixed;
   bottom: 32px;
