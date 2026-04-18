@@ -97,7 +97,6 @@ img {
   display: block;
 }
 
-/* Strong, Academic Typography */
 h1,
 h2,
 h3,
@@ -120,7 +119,7 @@ h4,
   }
 
   70% {
-    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
   }
 
   100% {
@@ -155,7 +154,6 @@ h4,
 .container {
   width: 100%;
   max-width: 1440px;
-  /* Increased from 1200px to stretch beautifully on PC */
   margin: 0 auto;
   padding: 0 clamp(24px, 5vw, 64px);
   position: relative;
@@ -167,7 +165,6 @@ h4,
   position: relative;
 }
 
-/* Editorial Section Headers */
 .section-title {
   margin-bottom: clamp(40px, 8vw, 64px);
   position: relative;
@@ -271,6 +268,22 @@ h4,
   background: var(--brand-light);
   transform: translateY(-2px);
   box-shadow: var(--shadow-base);
+}
+
+/* 🌟 FROSTED GLASS BUTTON (Fixes your missing Explore Events button) 🌟 */
+.btn-outline-light {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .reveal {
@@ -562,15 +575,37 @@ h4,
   align-items: flex-start;
 }
 
-/* Hero Dark Mode Text Overrides */
+/* 🌟 HERO GLASS TAG WITH BLINKING DOT 🌟 */
 #hero .h-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#hero .h-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+  animation: pulse 2s infinite ease-in-out;
+  /* The glowing animation */
 }
 
 #hero .h-tag-text {
-  color: rgba(255, 255, 255, 0.8);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #hero .hero-title {
@@ -607,19 +642,6 @@ h4,
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-}
-
-/* 🌟 CRITICAL FIX: Make the hidden "Explore Events" button visible on dark background 🌟 */
-#hero .btn-outline {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-}
-
-#hero .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #fff;
 }
 
 
