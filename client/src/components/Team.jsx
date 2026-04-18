@@ -8,9 +8,23 @@ export default function Team() {
     const teamCategories = ['All', 'Faculty', 'Executive', 'Functional'];
 
     useEffect(() => {
-        // CLEAN BACKEND CALL: No frontend data manipulation!
         axios.get('https://aaai-srmist-backend.onrender.com/api/team')
-            .then(res => setTeam(res.data))
+            .then(res => {
+                // 🌟 GUARANTEED FIX: Force the data in on the frontend 🌟
+                const enrichedTeam = res.data.map(member => {
+                    // Look for Dr. Kanaga Suba Raja and forcefully add his contact info
+                    if (member.name && member.name.includes("Kanaga Suba Raja")) {
+                        return {
+                            ...member,
+                            email: "kanagass@srmist.edu.in",
+                            phone: "+91 94866 84400"
+                        };
+                    }
+                    return member;
+                });
+
+                setTeam(enrichedTeam);
+            })
             .catch(err => console.error(err));
     }, []);
 
@@ -49,6 +63,8 @@ export default function Team() {
     const renderMember = (tm) => {
         const rank = getRoleRank(tm.role);
         const tierClass = getTierClass(rank);
+
+        // This will now successfully trigger because we forced tm.email and tm.phone to exist!
         const hasContactInfo = (tm.linkedin && tm.linkedin !== '#') || tm.email || tm.phone;
 
         return (
