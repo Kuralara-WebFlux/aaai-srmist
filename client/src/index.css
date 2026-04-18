@@ -1,6 +1,6 @@
 /* ============================================================
    AAAI SRMIST - OFFICIAL ACADEMIC CHAPTER UI/UX
-   (Featuring Timeline Events & Exhibition Gallery)
+   (Featuring Timeline Events & Scrollable Gallery Slider)
    ============================================================ */
 
 :root {
@@ -1032,7 +1032,7 @@ h4,
 }
 
 
-/* ==================== 2. EVENT GALLERY (Elite Exhibition) ==================== */
+/* ==================== 2. EVENT GALLERY (Scrollable Cinematic Slider) ==================== */
 .gallery-group-header {
   margin-bottom: 32px;
   display: flex;
@@ -1054,26 +1054,51 @@ h4,
   font-weight: 500;
 }
 
-/* The Spaced Exhibition Grid */
+/* The Horizontal Scrolling Container */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 32px;
-  /* Perfect breathing room */
-  padding: 16px 0;
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
+  padding: 16px 0 32px 0;
+  /* Extra padding at bottom for shadow breathing room */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar for clean app-like look */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Premium Framed Items */
+.gallery-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Premium Framed Slider Items */
 .gallery-item {
   position: relative;
+  flex: 0 0 calc(85% - 24px);
+  /* Mobile: show a peek of the next card */
+  max-width: 400px;
   aspect-ratio: 4/3;
   border-radius: var(--radius-md);
   overflow: hidden;
-  /* Keeps the zoom strictly inside the box */
   background: var(--section);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-base);
+  box-shadow: var(--shadow-sm);
   transition: all 0.4s var(--ease);
+  scroll-snap-align: center;
+}
+
+@media (min-width: 768px) {
+  .gallery-item {
+    flex: 0 0 calc(45% - 24px);
+    scroll-snap-align: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-item {
+    flex: 0 0 calc(30% - 24px);
+  }
 }
 
 .gallery-item img {
@@ -1092,7 +1117,6 @@ h4,
 
 .gallery-item:hover img {
   transform: scale(1.08);
-  /* Smoothly zooms inward */
 }
 
 .gallery-placeholder {
