@@ -1,6 +1,6 @@
 /* ============================================================
    AAAI SRMIST - OFFICIAL ACADEMIC CHAPTER UI/UX
-   (Featuring Timeline & Filmstrip Layouts)
+   (Featuring Timeline Events & Exhibition Gallery)
    ============================================================ */
 
 :root {
@@ -1031,7 +1031,8 @@ h4,
   color: #fff;
 }
 
-/* ==================== 2. FILMSTRIP GALLERY ==================== */
+
+/* ==================== 2. EVENT GALLERY (Elite Exhibition) ==================== */
 .gallery-group-header {
   margin-bottom: 32px;
   display: flex;
@@ -1053,51 +1054,45 @@ h4,
   font-weight: 500;
 }
 
-/* Seamless Zero-Gap Grid */
+/* The Spaced Exhibition Grid */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  background: var(--brand-navy);
-  /* Base color seen during hover transitions */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+  /* Perfect breathing room */
+  padding: 16px 0;
 }
 
+/* Premium Framed Items */
 .gallery-item {
-  aspect-ratio: 1;
-  /* Perfect squares for the filmstrip */
   position: relative;
-  background: var(--surface);
-  transition: all 0.5s var(--ease);
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  /* Keeps the zoom strictly inside the box */
+  background: var(--section);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-base);
+  transition: all 0.4s var(--ease);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.5s var(--ease);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Cinematic Hover Focus Effect */
-/* Dim everything when the grid is hovered */
-.gallery-grid:hover .gallery-item img {
-  filter: grayscale(100%) brightness(0.4);
+/* Cinematic Inner-Zoom Hover Effect */
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--brand-blue);
 }
 
-/* Highlight the specific item being hovered */
-.gallery-grid .gallery-item:hover {
-  z-index: 10;
-}
-
-.gallery-grid .gallery-item:hover img {
-  filter: grayscale(0%) brightness(1.1);
-  transform: scale(1.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  border-radius: var(--radius-sm);
-  border: 2px solid #fff;
+.gallery-item:hover img {
+  transform: scale(1.08);
+  /* Smoothly zooms inward */
 }
 
 .gallery-placeholder {
@@ -1114,6 +1109,7 @@ h4,
   letter-spacing: 0.05em;
   background: var(--section);
 }
+
 
 /* ==================== RESEARCH JOURNAL (Publication Grid) ==================== */
 .page-hero {
@@ -1577,6 +1573,7 @@ h4,
   border: 3px solid #fff;
 }
 
+/* Crisp Light-Mode Terminal */
 .aria-terminal {
   position: fixed;
   bottom: 32px;
