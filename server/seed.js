@@ -26,7 +26,7 @@ const TEAM_DATA = [
     image: '', // Add image path if you have one
     // 👇 ADDED SPECIFIC CONTACT INFO HERE 👇
     email: 'kanagass@srmist.edu.in',
-    phone: '+91 94866 84400'
+    phone: '94866 84400'
   },
   // ... rest of your team members (they don't need email/phone if you don't want them to have it)
 ];
