@@ -969,6 +969,7 @@ h4,
 .gallery-item {
   position: relative;
   aspect-ratio: 16/10;
+  /* Perfect widescreen cinema aspect */
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--section);
@@ -1859,21 +1860,44 @@ h4,
 }
 
 
-/* ==================== 8. FOOTER (CLEAN INSTITUTIONAL GRID) ==================== */
+/* ==================== 8. FOOTER (CINEMATIC SLATE ANCHOR) ==================== */
 #footer {
   background: var(--brand-navy);
   color: #fff;
-  padding: 80px 0 0;
+  padding: 100px 0 0;
   margin-top: auto;
   position: relative;
-  border-top: 4px solid var(--brand-blue);
-  /* Solid, sharp top border */
+  /* 🌟 Razor-thin cinematic border instead of harsh blue line */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 🌟 Subtle Ambient Lighting behind Logo */
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Elegant Top Edge Highlight */
+#footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 64px 32px;
+  gap: 56px 32px;
   padding-bottom: 80px;
   position: relative;
   z-index: 2;
@@ -1894,8 +1918,9 @@ h4,
 .footer-logo-mark {
   width: 56px;
   height: 56px;
-  background: #fff;
-  color: var(--brand-navy);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -1904,12 +1929,13 @@ h4,
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 32px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
 }
 
 .footer-brand-name {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
@@ -1917,49 +1943,22 @@ h4,
 }
 
 .footer-brand p {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.7;
   max-width: 400px;
-  margin-bottom: 24px;
-}
-
-/* Clean Live Status Indicator for Footer */
-.footer-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-pill);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.footer-status .status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-  animation: blink 2s infinite;
 }
 
 .footer-col h4 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--brand-light);
+  color: var(--text-sub);
   margin-bottom: 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 8px;
+  padding-bottom: 12px;
   display: inline-block;
 }
 
@@ -1971,7 +1970,7 @@ h4,
 
 .footer-link {
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   display: inline-block;
   transition: all 0.3s;
 }
@@ -1981,17 +1980,19 @@ h4,
   transform: translateX(6px);
 }
 
+/* Floating Bottom Bar */
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 32px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   background: rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 2;
+  backdrop-filter: blur(12px);
 }
 
 .footer-copy {
