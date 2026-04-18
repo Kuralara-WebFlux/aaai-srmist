@@ -1,6 +1,6 @@
 /* ============================================================
    AAAI SRMIST - THE ULTIMATE ACADEMIC UI/UX MASTERPIECE
-   (Timeline, Cinematic Gallery, Archive Blog, Borderless Team)
+   (Timeline, Cinematic Gallery, Editorial Blog, Borderless Team)
    ============================================================ */
 
 :root {
@@ -1137,7 +1137,7 @@ h4,
 }
 
 
-/* ==================== 4. RESEARCH JOURNAL (ACADEMIC ARCHIVE) ==================== */
+/* ==================== 4. RESEARCH JOURNAL (MODERN EDITORIAL) ==================== */
 .page-hero {
   background: var(--brand-navy);
   padding: calc(var(--nav-h) + 100px) 0 100px;
@@ -1206,73 +1206,143 @@ h4,
   color: var(--text-main);
 }
 
-/* The Dense Archive List */
+/* The Modern Editorial Grid */
 .blog-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: 4px solid var(--brand-navy);
-  padding-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
-/* Linear List Items instead of Grid Cards */
+@media (min-width: 768px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Beautiful Framed Cards */
 .blog-card {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  border-radius: 0;
-  overflow: visible;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   transition: all 0.4s var(--ease);
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  box-shadow: none;
-  padding: 40px 0;
+  box-shadow: var(--shadow-base);
+  position: relative;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.4), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
 }
 
 .blog-card:hover {
-  background: var(--section);
-  padding-left: 32px;
-  /* Smooth indent effect on hover */
-  padding-right: 32px;
-  border-bottom-color: transparent;
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: transparent;
 }
 
-/* Hide all images for pure data-archive look */
-.blog-image-placeholder,
-.featured-img {
-  display: none !important;
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+/* The Framed Artwork Placeholder */
+.blog-image-placeholder {
+  height: 240px;
+  background: var(--bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the image fits perfectly inside without cropping */
+.blog-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+  transition: transform 0.6s var(--ease);
+}
+
+.blog-card:hover .blog-image-placeholder img {
+  transform: scale(1.05);
+}
+
+.blog-image-placeholder span {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.15em;
 }
 
 .blog-content {
-  padding: 0;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-/* Override Featured Blog special sizing to match archive flow */
+/* The Massive Featured Hero Article */
 @media (min-width: 1024px) {
   .featured-blog {
-    grid-column: auto;
-    flex-direction: column;
-    align-items: flex-start;
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+  }
+
+  .featured-blog .featured-img {
+    width: 55%;
+    height: auto;
+    min-height: 480px;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+
+  .featured-blog .featured-img img {
+    padding: 48px;
+    /* Extra breathing room for the featured hero */
   }
 
   .featured-blog .featured-content {
-    width: 100%;
-    padding: 0;
+    width: 45%;
+    padding: 64px;
+    justify-content: center;
   }
 
   .blog-featured-title {
-    font-size: clamp(28px, 4vw, 40px) !important;
-    margin-bottom: 16px !important;
+    font-size: clamp(32px, 4vw, 48px) !important;
+    margin-bottom: 24px !important;
+    letter-spacing: -0.03em !important;
   }
 }
 
-/* Academic Tags */
+/* Editorial Content Formatting */
 .blog-card .event-meta {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   display: flex;
   gap: 16px;
   align-items: center;
@@ -1280,7 +1350,7 @@ h4,
 
 .blog-card .event-type {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1290,17 +1360,13 @@ h4,
 }
 
 .blog-card .status-badge {
-  border: none;
-  background: transparent;
+  border: 1px solid var(--border);
+  background: var(--section);
   color: var(--text-mute);
-  padding: 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
 }
 
-/* Title & Excerpt */
 .event-title {
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: clamp(24px, 3vw, 28px);
   margin-bottom: 16px;
   line-height: 1.3;
   color: var(--brand-navy);
@@ -1310,46 +1376,50 @@ h4,
 
 .blog-card:hover .event-title {
   color: var(--brand-blue);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
 }
 
 .blog-card .event-desc {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text-sub);
   line-height: 1.6;
-  max-width: 800px;
   margin-bottom: 24px;
+  flex: 1;
 }
 
-/* Minimalist Author Footer */
+/* Premium Author Footer */
 .blog-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 24px;
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
 }
 
 .blog-author {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .author-av {
-  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Hide avatar */
 .author-info {
   display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: center;
+  flex-direction: column;
 }
 
 .author-name {
@@ -1358,23 +1428,13 @@ h4,
   color: var(--brand-navy);
 }
 
-.author-name::before {
-  content: 'By ';
-  color: var(--text-mute);
-  font-weight: 400;
-}
-
 .author-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-mute);
   text-transform: uppercase;
-  margin-top: 0;
-  font-weight: 500;
-}
-
-.blog-footer .btn {
-  display: none;
+  margin-top: 4px;
+  letter-spacing: 0.1em;
 }
 
 
