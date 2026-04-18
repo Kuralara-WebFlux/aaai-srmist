@@ -1,5 +1,6 @@
 /* ============================================================
    AAAI SRMIST - OFFICIAL ACADEMIC CHAPTER UI/UX
+   (Featuring Timeline & Filmstrip Layouts)
    ============================================================ */
 
 :root {
@@ -35,7 +36,7 @@
   /* Realistic, Diffuse Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 20px 40px -10px rgba(11, 27, 61, 0.15);
   --shadow-nav: 0 4px 20px -2px rgba(11, 27, 61, 0.05);
 
   /* Professional Geometry */
@@ -507,7 +508,6 @@ h4,
   background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-main) 100%);
 }
 
-/* Subtle Technical Grid */
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -594,7 +594,7 @@ h4,
   gap: 16px;
 }
 
-/* ==================== DOSSIER EVENT UI (Whitepaper Style) ==================== */
+/* ==================== 1. CONTINUOUS TIMELINE (EVENTS) ==================== */
 .filter-tabs {
   display: flex;
   gap: 12px;
@@ -623,35 +623,36 @@ h4,
   box-shadow: var(--shadow-sm);
 }
 
+/* The Timeline Axis */
 .events-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
+  position: relative;
+  margin-left: 16px;
+  padding-left: 32px;
+  border-left: 2px solid var(--border);
 }
 
-/* Academic Paper Cards */
+@media (min-width: 768px) {
+  .events-list {
+    margin-left: 24px;
+    padding-left: 48px;
+  }
+}
+
+/* Event Card (Attached to timeline) */
 .event-list-card {
   display: flex;
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: all 0.3s var(--ease);
-  position: relative;
   box-shadow: var(--shadow-sm);
-}
-
-.event-list-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 4px;
-  background: var(--brand-blue);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease);
+  position: relative;
+  overflow: visible;
+  /* CRITICAL: Allows node to hang outside */
+  transition: all 0.5s var(--ease);
 }
 
 @media (min-width: 768px) {
@@ -660,14 +661,41 @@ h4,
   }
 }
 
+/* The Glowing Node */
+.event-list-card::before {
+  content: '';
+  position: absolute;
+  left: -42px;
+  /* Pulls it perfectly over the border-left of .events-list */
+  top: 48px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 4px solid var(--brand-blue);
+  box-shadow: 0 0 0 6px var(--bg-main);
+  z-index: 2;
+  transition: all 0.5s var(--ease);
+}
+
+@media (min-width: 768px) {
+  .event-list-card::before {
+    left: -58px;
+  }
+}
+
+/* Timeline Magnetic Hover Effect */
 .event-list-card:hover {
-  transform: translateY(-4px);
+  transform: translateX(12px);
   box-shadow: var(--shadow-hover);
   border-color: var(--border-hover);
 }
 
+/* Node stays anchored on the line while the card moves */
 .event-list-card:hover::before {
-  opacity: 1;
+  background: var(--brand-blue);
+  box-shadow: 0 0 0 8px rgba(29, 78, 216, 0.1);
+  transform: translateX(-12px) scale(1.2);
 }
 
 .event-list-card.is-expanded {
@@ -676,27 +704,29 @@ h4,
 }
 
 .event-list-card.is-expanded::before {
-  opacity: 1;
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
 }
 
-/* Internal Card Styling */
+/* Internal Card Formatting */
 .event-date-block {
-  background: var(--section);
+  background: transparent;
   color: var(--brand-navy);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
-  text-align: center;
-  border-bottom: 1px solid var(--border);
+  padding: 32px 32px 16px;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
   .event-date-block {
     width: 160px;
-    border-bottom: none;
-    border-right: 1px solid var(--border);
+    padding: 32px;
+    border-right: 1px dashed var(--border);
+    text-align: center;
+    align-items: center;
   }
 }
 
@@ -723,8 +753,14 @@ h4,
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 32px;
-  background: #fff;
+  padding: 16px 32px 32px;
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .event-content-wrapper {
+    padding: 32px;
+  }
 }
 
 .event-header-row {
@@ -833,6 +869,7 @@ h4,
   border-color: var(--border-hover);
 }
 
+/* Dossier Expansion */
 .event-expandable-body {
   display: grid;
   grid-template-rows: 0fr;
@@ -885,12 +922,6 @@ h4,
 
 .recap-meta p:last-child {
   margin-bottom: 0;
-}
-
-.event-fallback-desc {
-  font-size: 14px;
-  color: var(--text-mute);
-  font-style: italic;
 }
 
 /* ==================== TEAM GRID (Official Roster) ==================== */
@@ -1000,7 +1031,7 @@ h4,
   color: #fff;
 }
 
-/* ==================== EVENT GALLERY ==================== */
+/* ==================== 2. FILMSTRIP GALLERY ==================== */
 .gallery-group-header {
   margin-bottom: 32px;
   display: flex;
@@ -1022,38 +1053,51 @@ h4,
   font-weight: 500;
 }
 
+/* Seamless Zero-Gap Grid */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--brand-navy);
+  /* Base color seen during hover transitions */
 }
 
 .gallery-item {
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 1px solid var(--border);
+  aspect-ratio: 1;
+  /* Perfect squares for the filmstrip */
+  position: relative;
   background: var(--surface);
-  transition: all 0.3s var(--ease);
-  aspect-ratio: 4/3;
-  box-shadow: var(--shadow-sm);
+  transition: all 0.5s var(--ease);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease);
+  transition: all 0.5s var(--ease);
 }
 
-.gallery-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border-hover);
-  z-index: 2;
+/* Cinematic Hover Focus Effect */
+/* Dim everything when the grid is hovered */
+.gallery-grid:hover .gallery-item img {
+  filter: grayscale(100%) brightness(0.4);
 }
 
-.gallery-item:hover img {
-  transform: scale(1.04);
+/* Highlight the specific item being hovered */
+.gallery-grid .gallery-item:hover {
+  z-index: 10;
+}
+
+.gallery-grid .gallery-item:hover img {
+  filter: grayscale(0%) brightness(1.1);
+  transform: scale(1.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-sm);
+  border: 2px solid #fff;
 }
 
 .gallery-placeholder {
@@ -1533,7 +1577,6 @@ h4,
   border: 3px solid #fff;
 }
 
-/* Crisp Light-Mode Terminal */
 .aria-terminal {
   position: fixed;
   bottom: 32px;
